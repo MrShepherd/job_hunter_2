@@ -10,4 +10,3 @@ if __name__ == '__main__':
     job_info_new = dbhandler_obj.getdata()
     outputer_obj = htmloutputer.HtmlOutputer()
     outputer_obj.output()
-    print('hello')
