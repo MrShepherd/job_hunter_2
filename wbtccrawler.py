@@ -16,19 +16,19 @@ class WBTCCrawler(Crawler):
             while curr_page <= max_page:
                 urls.append(re.sub("pn\d", "pn%d" % curr_page, item))
                 curr_page += 1
-        print('...got %d pages about job info from 51job' % len(urls))
+        print('...got %d pages about job info from 58' % len(urls))
         return urls
 
     def craw(self):
         print('crawling job info from 58')
         for url in self.get_url():
-            tmp_dict = {}
             downloader = htmldownloader.HtmlDownLoader(url)
             html_cont = downloader.download()
             parser = htmlparser.HtmlParser(html_cont)
             soup = parser.get_soup()
             items = soup.find("div", id="infolist").find_all("dl")
             for item in items:
+                tmp_dict = {}
                 tmp_dict['media'] = '58'
                 tmp_dict['jobname'] = item.find("dt").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("dt").find("a").get("href")
@@ -37,4 +37,5 @@ class WBTCCrawler(Crawler):
                 tmp_dict['salary'] = 'unknown'
                 self.data.append(tmp_dict)
         print('...got %d job info items from 58' % len(self.data))
+        print(self.data)
         return self.data

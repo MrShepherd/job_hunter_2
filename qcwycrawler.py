@@ -26,7 +26,6 @@ class QCWYCrawler(Crawler):
     def craw(self):
         print('crawling job info from 51job')
         for url in self.get_url():
-            tmp_dict = {}
             downloader = htmldownloader.HtmlDownLoader(url)
             html_cont = downloader.download()
             parser = htmlparser.HtmlParser(html_cont)
@@ -34,6 +33,7 @@ class QCWYCrawler(Crawler):
             items = soup.find("div", {"id": "resultList"}).find_all("div", class_="el")
             items.remove(items[0])
             for item in items:
+                tmp_dict = {}
                 tmp_dict['media'] = '51job'
                 tmp_dict['jobname'] = item.find("p", class_="t1").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("p", class_="t1").find("a").get("href")
@@ -41,6 +41,6 @@ class QCWYCrawler(Crawler):
                 tmp_dict['location'] = item.find("span", class_="t3").get_text()
                 tmp_dict['salary'] = item.find("span", class_="t4").get_text()
                 self.data.append(tmp_dict)
-        # print(self.data)
         print('...got %d job info items from 51job' % len(self.data))
+        print(self.data)
         return self.data
