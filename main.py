@@ -1,9 +1,9 @@
-import crawler
+import spider
 import dbhandler
 import htmloutputer
 
 if __name__ == '__main__':
-    crawler_obj = crawler.Crawler()
+    crawler_obj = spider.Spider()
     data_today = crawler_obj.craw()
     dbhandler_obj = dbhandler.DBHandler()
     dbhandler_obj.savedata()
