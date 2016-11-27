@@ -1,5 +1,7 @@
 import re
 
+import time
+
 import htmldownloader
 import htmlparser
 from crawler import Crawler
@@ -35,6 +37,7 @@ class GJCrawler(Crawler):
                 tmp_dict['location'] = item.find("dd", class_="pay").get_text()
                 tmp_dict['salary'] = 'unknown'
                 self.data.append(tmp_dict)
+            time.sleep(3)
         print('...got %d job info items from ganji' % len(self.data))
         print(self.data)
         return self.data

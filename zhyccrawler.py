@@ -1,5 +1,7 @@
 import re
 
+import time
+
 import htmldownloader
 import htmlparser
 from crawler import Crawler
@@ -38,6 +40,7 @@ class ZHYCCrawler(Crawler):
                 tmp_dict['location'] = item.find("li", class_="l2").find("span", class_="e1").get_text().split(']')[0].replace('[', '').strip()
                 tmp_dict['salary'] = item.find("li", class_="l2").find("span", class_="e2").get_text().strip()
                 self.data.append(tmp_dict)
+            time.sleep(3)
         print('...got %d job info items from chinahr' % len(self.data))
         print(self.data)
         return self.data

@@ -1,3 +1,5 @@
+import time
+
 import htmldownloader
 import htmlparser
 from crawler import Crawler
@@ -35,6 +37,7 @@ class LPCrawler(Crawler):
                 tmp_dict['location'] = item.find("div", class_="job-info").find("p", class_="condition").find("a", class_="area").get_text().strip()
                 tmp_dict['salary'] = item.find("div", class_="job-info").find("p", class_="condition").find("span", class_="text-warning").get_text().strip()
                 self.data.append(tmp_dict)
+            time.sleep(3)
         print('...got %d job info items from liepin' % len(self.data))
         print(self.data)
         return self.data

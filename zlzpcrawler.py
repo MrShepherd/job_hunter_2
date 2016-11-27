@@ -1,5 +1,7 @@
 import re
 
+import time
+
 import htmldownloader
 import htmlparser
 from crawler import Crawler
@@ -35,6 +37,7 @@ class ZLZPCrawler(Crawler):
                 tmp_dict['location'] = item.find("td", class_="gzdd").get_text().strip()
                 tmp_dict['salary'] = item.find("td", class_="zwyx").get_text().strip()
                 self.data.append(tmp_dict)
+            time.sleep(3)
         print('...got %d job info items from zhilian' % len(self.data))
         print(self.data)
         return self.data
