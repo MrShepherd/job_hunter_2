@@ -33,7 +33,7 @@ class ZHYCCrawler(Crawler):
             items = soup.find("div", {"class": "resultList"}).find_all("div", class_="jobList")
             for item in items:
                 tmp_dict = {}
-                tmp_dict['media'] = 'chinahr'
+                tmp_dict['media'] = '中华英才'
                 tmp_dict['jobname'] = item.find("li", class_="l1").find("span", class_="e1").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("li", class_="l1").find("span", class_="e1").find("a").get("href")
                 tmp_dict['company'] = item.find("li", class_="l1").find("span", class_="e3").find("a").get_text().strip()

@@ -30,12 +30,12 @@ class GJCrawler(Crawler):
             items = soup.select("dl.list-noimg.job-list")
             for item in items:
                 tmp_dict = {}
-                tmp_dict['media'] = 'ganji'
+                tmp_dict['media'] = '赶集'
                 tmp_dict['jobname'] = item.find("dt").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("dt").find("a").get("href")
                 tmp_dict['company'] = item.find("dd", class_="company").find("a").get_text()
                 tmp_dict['location'] = item.find("dd", class_="pay").get_text()
-                tmp_dict['salary'] = 'unknown'
+                tmp_dict['salary'] = '未知'
                 self.data.append(tmp_dict)
             time.sleep(3)
         print('...got %d job info items from ganji' % len(self.data))

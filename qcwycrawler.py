@@ -34,7 +34,7 @@ class QCWYCrawler(Crawler):
             items.remove(items[0])
             for item in items:
                 tmp_dict = {}
-                tmp_dict['media'] = '51job'
+                tmp_dict['media'] = '前程无忧'
                 tmp_dict['jobname'] = item.find("p", class_="t1").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("p", class_="t1").find("a").get("href")
                 tmp_dict['company'] = item.find("span", class_="t2").find("a").get_text()

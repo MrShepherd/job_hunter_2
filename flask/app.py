@@ -14,7 +14,8 @@ def index():
         conn = sqlite3.connect("../data.db")
         cursor = conn.cursor()
         today = datetime.now().strftime("%Y-%m-%d")
-        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
+        # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
+        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
         data = cursor.fetchall()[0:50]
         conn.close()
         return render_template('index.html', data=data)
@@ -25,7 +26,7 @@ def index():
         conn = sqlite3.connect("../data.db")
         cursor = conn.cursor()
         today = datetime.now().strftime("%Y-%m-%d")
-        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
+        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
         data = cursor.fetchall()[startindex:endindex]
         conn.close()
         return render_template('table.html', data=data)

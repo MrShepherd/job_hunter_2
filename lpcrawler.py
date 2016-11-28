@@ -30,7 +30,7 @@ class LPCrawler(Crawler):
             items = soup.find("div", {"class": "sojob-result"}).find_all("li")
             for item in items:
                 tmp_dict = {}
-                tmp_dict['media'] = 'liepin'
+                tmp_dict['media'] = '猎聘'
                 tmp_dict['jobname'] = item.find("div", class_="job-info").find(["span", "h3"]).get("title")
                 tmp_dict['joblink'] = item.find("div", class_="job-info").find(["span", "h3"]).find("a").get("href")
                 tmp_dict['company'] = item.find("div", class_="company-info").find("p", class_="company-name").find("a").get_text().strip()

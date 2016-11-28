@@ -30,7 +30,7 @@ class ZLZPCrawler(Crawler):
             items.remove(items[0])
             for item in items:
                 tmp_dict = {}
-                tmp_dict['media'] = 'zhilian'
+                tmp_dict['media'] = '智联'
                 tmp_dict['jobname'] = item.find("td", class_="zwmc").find("a").get_text().strip()
                 tmp_dict['joblink'] = item.find("td", class_="zwmc").find("a").get("href")
                 tmp_dict['company'] = item.find("td", class_="gsmc").find("a").get_text().strip()
