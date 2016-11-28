@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}job-list{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}">
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='scroll.js') }}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>未读工作信息</h1>
+        <div class="table-responsive">
+            <table class="table table-stripped table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>职位</th>
+                    <th>公司</th>
+                    <th>地点</th>
+                    <th>月薪</th>
+                    <th>来源</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for td in data %}
+                <tr>
+                    <td><a href="{{ td[2] }}">{{ td[1] }}</a></td>
+                    <td>{{ td[3] }}</td>
+                    <td>{{ td[4] }}</td>
+                    <td>{{ td[5] }}</td>
+                    <td>{{ td[0] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
