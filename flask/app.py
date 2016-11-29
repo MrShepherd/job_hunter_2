@@ -17,8 +17,10 @@ def index():
         # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
         cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
         data = cursor.fetchall()[0:50]
+        cursor.execute("SELECT count(*) FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
+        cnt = cursor.fetchone()[0]
         conn.close()
-        return render_template('index.html', data=data)
+        return render_template('index.html', data=data, cnt=cnt)
     if request.method == 'POST':
         page = int(request.form.get('page'))
         startindex = 50 * page
