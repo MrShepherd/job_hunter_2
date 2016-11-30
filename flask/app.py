@@ -15,10 +15,13 @@ def index():
         cursor = conn.cursor()
         today = datetime.now().strftime("%Y-%m-%d")
         # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
-        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
+        # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
+        cursor.execute(
+            "SELECT DISTINCT media,jobname,'#',company,location,salary FROM jobinfo WHERE  location like '%s' or location like '%s' or location like '%s' order by media" % ('%鄂尔多斯%', '%东胜%', '%康巴什%'))
         data = cursor.fetchall()[0:50]
         cursor.execute("SELECT count(*) FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
-        cnt = cursor.fetchone()[0]
+        # cnt = cursor.fetchone()[0]
+        cnt = 540
         conn.close()
         return render_template('index.html', data=data, cnt=cnt)
     if request.method == 'POST':
@@ -27,8 +30,10 @@ def index():
         endindex = startindex + 50
         conn = sqlite3.connect("../data.db")
         cursor = conn.cursor()
-        today = datetime.now().strftime("%Y-%m-%d")
-        cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
+        # today = datetime.now().strftime("%Y-%m-%d")
+        # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
+        cursor.execute(
+            "SELECT DISTINCT media,jobname,'#',company,location,salary FROM jobinfo WHERE  location like '%s' or location like '%s' or location like '%s' order by media" % ('%鄂尔多斯%', '%东胜%', '%康巴什%'))
         data = cursor.fetchall()[startindex:endindex]
         conn.close()
         return render_template('table.html', data=data)
