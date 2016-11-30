@@ -9,11 +9,11 @@ class DBHandler(object):
         self.today = datetime.now().strftime("%Y-%m-%d")
 
     def get_all_link(self):
-        self.cursor.execute('SELECT joblink FROM jobinfo')
+        self.cursor.execute('SELECT DISTINCT jobname,company FROM jobinfo')
         return self.cursor.fetchall()
 
-    def in_db(self, url):
-        return (url,) in self.get_all_link()
+    def in_db(self, jobname, company):
+        return (jobname, company) in self.get_all_link()
 
     def savedata(self, data):
         for item in data:
