@@ -17,7 +17,7 @@ class DBHandler(object):
 
     def savedata(self, data):
         for item in data:
-            if not self.in_db(item['joblink']):
+            if not self.in_db(item['jobname'], item['company']):
                 item['etldate'] = self.today
                 self.cursor.execute("INSERT INTO jobinfo VALUES ('%s','%s','%s','%s','%s','%s','%s')" % (
                     item['media'], item['jobname'], item['joblink'], item['company'], item['location'], item['salary'], item['etldate']))
