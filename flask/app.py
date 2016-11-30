@@ -15,8 +15,8 @@ def index():
     today = datetime.now().strftime("%Y-%m-%d")
     # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' order by media" % today)
     # cursor.execute("SELECT * FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s') order by media" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
-    cursor.execute(
-        "SELECT DISTINCT media,jobname,'#',company,location,salary FROM jobinfo WHERE  location like '%s' or location like '%s' or location like '%s' order by media,jobname" % ('%鄂尔多斯%', '%东胜%', '%康巴什%'))
+    cursor.execute("SELECT DISTINCT media,jobname,'#',company,location,salary FROM jobinfo WHERE  location like '%s' or location like '%s' or location like '%s' order by media,jobname" % (
+        '%鄂尔多斯%', '%东胜%', '%康巴什%'))
     data = cursor.fetchall()
     cursor.execute("SELECT count(*) FROM jobinfo WHERE etldate='%s' and (location like '%s' or location like '%s' or location like '%s')" % (today, '%鄂尔多斯%', '%东胜%', '%康巴什%'))
     # cnt = cursor.fetchone()[0]
@@ -30,7 +30,7 @@ def index():
         startindex = 50 * page
         endindex = startindex + 50
         data = data[startindex:endindex]
-        return render_template('table.html', data=data)
+        return render_template('table.html', data=data, page=page)
 
 
 if __name__ == '__main__':

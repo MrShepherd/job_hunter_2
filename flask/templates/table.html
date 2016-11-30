@@ -1,9 +1,12 @@
+{% set id = 50*page+1 %}
 {% for td in data %}
 <tr>
+    <td>{{ id }}</td>
     <td><a href="{{ td[2] }}">{{ td[1] }}</a></td>
     <td>{{ td[3] }}</td>
     <td>{{ td[4] }}</td>
     <td>{{ td[5] }}</td>
     <td>{{ td[0] }}</td>
 </tr>
+{% set id = id+1 %}
 {% endfor %}
