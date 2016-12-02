@@ -21,6 +21,13 @@ def index():
     cnt = cursor.fetchone()[0]
     # cnt = 540
     conn.close()
+    conn = sqlite3.connect("/home/shepherd/Work/code/crawler_project/job_hunter/data.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT 'jobhunter',job,job_link,job_company,job_location,'未知',etl_date FROM job_info WHERE etl_date='%s'" % today)
+    data += cursor.fetchall()
+    cursor.execute("SELECT count(*) FROM job_info WHERE etl_date='%s'" % today)
+    cnt += cursor.fetchone()[0]
+
     if request.method == 'GET':
         data = data[:50]
         return render_template('index.html', data=data, cnt=cnt)
