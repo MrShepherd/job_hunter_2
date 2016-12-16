@@ -12,7 +12,6 @@ class LPCrawler(Crawler):
             'https://www.liepin.com/zhaopin/?industries=&dqs=220&salary=&jobKind=&pubTime=1&compkind=&compscale=&industryType=&searchType=1&clean_condition=&isAnalysis=&init=-1&sortFlag=15&fromSearchBtn=2&head&&&ckid=4c96fafb955d53de&key=&jobTitles=360320,360321,100190&&&&ckid=4c96fafb955d53de&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&headckid=a67c7e225284700c&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190&jobTitles=360320,360321,100190']
         max_page = 15
         curr_page = 1
-        urls = []
         while curr_page <= max_page:
             urls.append(re.sub("curPage=\d", "curPage=%d" % curr_page, url))
             curr_page += 1
