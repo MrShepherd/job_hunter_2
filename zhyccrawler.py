@@ -18,7 +18,7 @@ class ZHYCCrawler(Crawler):
         curr_page = 1
         urls = []
         while curr_page <= max_page:
-            urls.append(re.sub("page=\d", "curr_page=%d" % curr_page, url))
+            urls.append(re.sub("page=\d", "page=%d" % curr_page, url))
             curr_page += 1
         print('...got %d pages about job info from chinahr' % len(urls))
         return urls
