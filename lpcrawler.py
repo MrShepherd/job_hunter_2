@@ -2,6 +2,7 @@ import time
 
 import htmldownloader
 import htmlparser
+import re
 from crawler import Crawler
 
 
